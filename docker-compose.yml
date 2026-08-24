@@ -26,7 +26,7 @@ services:
       - db
     environment:
       DB_HOST: db
-      DB_USERNAME: root
+      DB_USERNAME: rails
       DB_PASSWORD: password
 
 volumes:

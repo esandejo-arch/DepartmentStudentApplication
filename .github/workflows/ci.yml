@@ -74,6 +74,8 @@ jobs:
         env:
           MYSQL_ROOT_PASSWORD: password
           MYSQL_DATABASE: department_student_application_test
+          MYSQL_USER: rails
+          MYSQL_PASSWORD: password
         ports:
           - 3306:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
@@ -99,7 +101,7 @@ jobs:
       - name: Run tests
         env:
           RAILS_ENV: test
-          DB_USERNAME: root
+          DB_USERNAME: rails
           DB_PASSWORD: password
           DB_HOST: 127.0.0.1
           # RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
@@ -140,7 +142,7 @@ jobs:
       - name: Run System Tests
         env:
           RAILS_ENV: test
-          DB_USERNAME: root
+          DB_USERNAME: rails
           DB_PASSWORD: password
           DB_HOST: 127.0.0.1
           # RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
