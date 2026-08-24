@@ -78,7 +78,7 @@ jobs:
           MYSQL_PASSWORD: password
         ports:
           - 3306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+        options: --health-cmd="mysqladmin ping -h 127.0.0.1 -u rails -p password" --health-interval=10s --health-timeout=5s --health-retries=3
 
       # redis:
       #   image: valkey/valkey:8
@@ -104,6 +104,7 @@ jobs:
           DB_USERNAME: rails
           DB_PASSWORD: password
           DB_HOST: 127.0.0.1
+          DATABASE_URL: mysql2://rails:password@127.0.0.1/department_student_application_test
           # RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
           # REDIS_URL: redis://localhost:6379/0
         run: bin/rails db:test:prepare test
@@ -145,6 +146,7 @@ jobs:
           DB_USERNAME: rails
           DB_PASSWORD: password
           DB_HOST: 127.0.0.1
+          DATABASE_URL: mysql2://rails:password@127.0.0.1/department_student_application_test
           # RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
           # REDIS_URL: redis://localhost:6379/0
         run: bin/rails db:test:prepare test:system
