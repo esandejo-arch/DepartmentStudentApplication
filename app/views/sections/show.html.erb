@@ -2,6 +2,32 @@
 
 <%= render @section %>
 
+<h1><%= @section.name %></h1>
+
+<h2>List of Students:</h2> 
+ <% if @section.students.any? %>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Year Level</th>
+        <th>Program</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @section.students.each do |student| %>
+        <tr>
+          <td><%= student.name %></td>
+          <td><%= student.year_level %></td>
+          <td><%= student.program || "N/A" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No students are enrolled in this section.</p>
+<% end %>
+
 <div>
   <%= link_to "Edit this section", edit_section_path(@section) %> |
   <%= link_to "Back to sections", sections_path %>

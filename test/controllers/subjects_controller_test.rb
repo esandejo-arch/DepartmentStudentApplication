@@ -26,6 +26,8 @@ class SubjectsControllerTest < ActionDispatch::IntegrationTest
   test "should show subject" do
     get subject_url(@subject)
     assert_response :success
+    assert_includes response.body, @subject.sections.first.name
+    assert_includes response.body, @subject.sections.first.students.first.name
   end
 
   test "should get edit" do
