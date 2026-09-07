@@ -60,7 +60,7 @@ class SubjectsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_subject
-      @subject = Subject.find(params.expect(:id))
+      @subject = Subject.includes(sections: { students: :department }).find(params.expect(:id))
     end
 
     # Only allow a list of trusted parameters through.
